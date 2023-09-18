@@ -2,11 +2,13 @@
 #define WINDOW_H
 
 #include "chessscene.h"
+#include "action_widget.h"
 
-#include <QWidget>
+#include <QMainWindow>
 #include <QGraphicsView>
+#include <QPushButton>
 
-class Window : public QWidget
+class Window : public QMainWindow
 {
     Q_OBJECT
 public:
@@ -14,7 +16,9 @@ public:
 
 private:
     ChessScene *m_chessScene;
-    QGraphicsView  *m_graphicsView;
+    QGraphicsView *m_graphicsView;
+    ActionWidget *m_action;
+    QDockWidget *m_dock;
 signals:
 
 };
