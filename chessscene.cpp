@@ -4,13 +4,33 @@
 #include <QPainterPath>
 #include <QGraphicsRectItem>
 #include <QBrush>
+#include <QPushButton>
+#include <QDir>
 
 ChessScene::ChessScene(QObject *parent)
     : QGraphicsScene{parent}
 {
-    using namespace ChessConstants;
-
     setParent(parent);
+
+    initBoard();
+
+
+    QString fileName = QString("C:/Users/eveil/qtProjects/chessinator/assets/b_pawn.png");
+    QPixmap pmap = QPixmap();
+    qDebug() << "Pawn image was loaded succesfully : " << pmap.load(fileName, "PNG");
+
+
+    QPushButton *pawn_button = new QPushButton();
+
+    pawn_button->setIcon(pmap);
+
+    addWidget(pawn_button);
+
+
+}
+
+void ChessScene::initBoard() {
+    using namespace ChessConstants;
     setSceneRect(QRectF(
         0,
         0,

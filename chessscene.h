@@ -13,7 +13,7 @@ public:
     explicit ChessScene(QObject *parent = nullptr);
 
 private:
-
+    void initBoard();
 };
 
 #endif // CHESSSCENE_H

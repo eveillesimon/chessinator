@@ -12,6 +12,7 @@ ActionWidget::ActionWidget(QWidget *parent)
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->addWidget(m_move);
     layout->addWidget(m_update);
+    layout->setAlignment(Qt::AlignTop);
 
     setLayout(layout);
 

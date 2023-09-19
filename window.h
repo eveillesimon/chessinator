@@ -19,6 +19,9 @@ private:
     QGraphicsView *m_graphicsView;
     ActionWidget *m_action;
     QDockWidget *m_dock;
+
+    void initView();
+    void initDock();
 signals:
 
 };

@@ -14,16 +14,19 @@ Window::Window(QWidget *parent)
     setParent(parent);
     setFixedSize(1920, 1080);
 
-    m_chessScene = new ChessScene(this);
+    initView();
+    initDock();
+}
 
+void Window::initView() {
+    m_chessScene = new ChessScene(this);
     m_graphicsView = new QGraphicsView(m_chessScene, this);
     setCentralWidget(m_graphicsView);
+}
 
-
+void Window::initDock() {
     m_dock = new QDockWidget("Actions");
     m_action = new ActionWidget(m_dock);
     m_dock->setWidget(m_action);
-    m_dock->show();
     addDockWidget(Qt::LeftDockWidgetArea ,m_dock);
 }
-
