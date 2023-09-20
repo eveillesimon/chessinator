@@ -12,7 +12,6 @@ SOURCES += \
     chessscene.cpp \
     main.cpp \
     pawn.cpp \
-    rook.cpp \
     window.cpp
 
 HEADERS += \
@@ -21,7 +20,6 @@ HEADERS += \
     chessscene.h \
     constants.h \
     pawn.h \
-    rook.h \
     window.h
 
 OTHER_FILES *= \

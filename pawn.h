@@ -5,8 +5,9 @@
 
 class Pawn : public ChessPiece
 {
+    Q_OBJECT
 public:
-    Pawn();
+    Pawn(QWidget *parent);
 };
 
 #endif // PAWN_H
