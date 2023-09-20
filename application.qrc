@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/">
+        <file alias="w_pawn">assets/w_pawn.png</file>
+        <file alias="b_pawn">assets/b_pawn.png</file>
+        <file alias="w_rook">assets/w_rook.png</file>
+        <file alias="b_rook">assets/b_rook.png</file>
+        <file alias="w_knight">assets/w_knight.png</file>
+        <file alias="b_knight">assets/b_knight.png</file>
+    </qresource>
+</RCC>

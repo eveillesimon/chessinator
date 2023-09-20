@@ -15,14 +15,17 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
 
+set(CMAKE_AUTORCC ON)
+
 add_executable(
         Chessinator
-        main.cpp
-        window.cpp
-        chessscene.cpp
-        pawn.cpp
-        chesspiece.cpp
-        action_widget.cpp
+        application.qrc
+        src/main.cpp
+        src/window.cpp
+        src/chessscene.cpp
+        src/pawn.cpp
+        src/chesspiece.cpp
+        src/action_widget.cpp
         )
 target_link_libraries(Chessinator
         Qt6::Core

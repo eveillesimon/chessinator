@@ -7,7 +7,10 @@ class Pawn : public ChessPiece
 {
     Q_OBJECT
 public:
-    Pawn(QWidget *parent);
+    Pawn(bool isWhite, QWidget *parent);
+
+private:
+    static constexpr std::string_view W = "";
 };
 
 #endif // PAWN_H

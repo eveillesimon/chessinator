@@ -1,6 +1,6 @@
 #include "pawn.h"
 
-Pawn::Pawn(QWidget *parent)
+Pawn::Pawn(bool isWhite, QWidget *parent)
     : ChessPiece(parent)
 {
 

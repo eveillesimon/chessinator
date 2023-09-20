@@ -14,8 +14,7 @@ ChessScene::ChessScene(QObject *parent)
 
     initBoard();
 
-
-    QString fileName = QString("C:/Users/eveil/qtProjects/chessinator/assets/b_pawn.png");
+    QString fileName = QString(":/w_pawn");
     QPixmap pmap = QPixmap();
     qDebug() << "Pawn image was loaded succesfully : " << pmap.load(fileName, "PNG");
 
