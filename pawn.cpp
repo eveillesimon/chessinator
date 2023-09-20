@@ -1,6 +1,7 @@
 #include "pawn.h"
 
-Pawn::Pawn()
+Pawn::Pawn(QWidget *parent)
+    : ChessPiece(parent)
 {
 
 }
