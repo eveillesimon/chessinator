@@ -8,10 +8,8 @@
 #include <QDockWidget>
 
 Window::Window(QWidget *parent)
-    : QMainWindow{parent}
+    : QMainWindow(parent)
 {
-
-    setParent(parent);
     setFixedSize(1920, 1080);
 
     initView();

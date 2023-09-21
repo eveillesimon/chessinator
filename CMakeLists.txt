@@ -23,7 +23,6 @@ add_executable(
         src/main.cpp
         src/window.cpp
         src/chessscene.cpp
-        src/pawn.cpp
         src/chesspiece.cpp
         src/action_widget.cpp
         )

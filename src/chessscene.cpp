@@ -1,5 +1,6 @@
 #include "chessscene.h"
 #include "constants.h"
+#include "chesspiece.h"
 
 #include <QPainterPath>
 #include <QGraphicsRectItem>
@@ -10,20 +11,14 @@
 ChessScene::ChessScene(QObject *parent)
     : QGraphicsScene{parent}
 {
-    setParent(parent);
 
+    using namespace ChessConstants;
     initBoard();
 
-    QString fileName = QString(":/w_pawn");
-    QPixmap pmap = QPixmap();
-    qDebug() << "Pawn image was loaded succesfully : " << pmap.load(fileName, "PNG");
+    ChessPiece *piece = new ChessPiece(true, ChessPieceKind::PAWN);
 
-
-    QPushButton *pawn_button = new QPushButton();
-
-    pawn_button->setIcon(pmap);
-
-    addWidget(pawn_button);
+    addItem(piece);
+    piece->setPos(CHESSSQUARE_SIZE/2, CHESSSQUARE_SIZE/2);
 
 
 }
@@ -44,7 +39,7 @@ void ChessScene::initBoard() {
     QBrush blackBrush = QBrush(BLACK_SQUARE_COLOR);
 
     bool firstIsWhite{FIRST_SQUARE_IS_WHITE};
-    bool nextIsWhite{!FIRST_SQUARE_IS_WHITE};
+    bool nextIsWhite{};
 
     QPointF uX = QPointF(CHESSSQUARE_SIZE , 0);
     QPointF uY = uX.transposed();

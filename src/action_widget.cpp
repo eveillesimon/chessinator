@@ -3,10 +3,8 @@
 #include <QVBoxLayout>
 
 ActionWidget::ActionWidget(QWidget *parent)
-    : QWidget{parent}
+    : QWidget(parent)
 {
-    setParent(parent);
-
     initButtons();
 
     QVBoxLayout *layout = new QVBoxLayout(this);

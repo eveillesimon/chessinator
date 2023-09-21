@@ -6,5 +6,11 @@
         <file alias="b_rook">assets/b_rook.png</file>
         <file alias="w_knight">assets/w_knight.png</file>
         <file alias="b_knight">assets/b_knight.png</file>
+        <file alias="w_bishop">assets/w_bishop.png</file>
+        <file alias="b_bishop">assets/b_bishop.png</file>
+        <file alias="w_queen">assets/w_queen.png</file>
+        <file alias="b_queen">assets/b_queen.png</file>
+        <file alias="w_king">assets/w_king.png</file>
+        <file alias="b_king">assets/b_king.png</file>
     </qresource>
 </RCC>
