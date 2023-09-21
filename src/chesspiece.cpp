@@ -13,7 +13,8 @@ ChessPiece::ChessPiece(bool teamWhite, ChessPieceKind kind, QGraphicsItem *paren
     pmap.load(fileName, "PNG");
 
     pmap = pmap.scaledToHeight(
-        static_cast<int>(CHESSPIECE_HEIGHT_SCALE * CHESSSQUARE_SIZE)
+        static_cast<int>(CHESSPIECE_HEIGHT_SCALE * CHESSSQUARE_SIZE),
+        Qt::SmoothTransformation
     );
     setPixmap(pmap);
 }

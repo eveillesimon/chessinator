@@ -15,10 +15,13 @@ ChessScene::ChessScene(QObject *parent)
     using namespace ChessConstants;
     initBoard();
 
-    ChessPiece *piece = new ChessPiece(true, ChessPieceKind::PAWN);
+    auto *piece = new ChessPiece(true, ChessPieceKind::PAWN);
+    auto *piece2 = new ChessPiece(false, ChessPieceKind::QUEEN);
 
+    addItem(piece2);
     addItem(piece);
-    piece->setPos(CHESSSQUARE_SIZE/2, CHESSSQUARE_SIZE/2);
+    piece->setPos( CHESSSQUARE_SIZE*5/2, CHESSSQUARE_SIZE*7/2);
+    piece2->setPos( CHESSSQUARE_SIZE*13/2, CHESSSQUARE_SIZE*9/2);
 
 
 }
