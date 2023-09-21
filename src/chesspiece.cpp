@@ -27,8 +27,6 @@ std::string_view ChessPiece::prefix() const {
 
 std::string_view ChessPiece::name() const{
     switch (m_kind){
-        case PAWN:
-            return ChessConstants::PAWN;
         case ROOK:
             return ChessConstants::ROOK;
         case KNIGHT:
@@ -39,6 +37,9 @@ std::string_view ChessPiece::name() const{
             return ChessConstants::QUEEN;
         case KING:
             return ChessConstants::KING;
+        default:
+        case PAWN:
+            return ChessConstants::PAWN;
     }
 }
 

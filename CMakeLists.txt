@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.10)
 project(Chessinator)
 
+set(TARGET_NAME Chessinator)
+
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_PREFIX_PATH "C://Qt//6.5.2//mingw_64")
@@ -18,7 +20,7 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTORCC ON)
 
 add_executable(
-        Chessinator
+        ${TARGET_NAME}
         application.qrc
         src/main.cpp
         src/window.cpp
@@ -26,12 +28,17 @@ add_executable(
         src/chesspiece.cpp
         src/action_widget.cpp
         )
-target_link_libraries(Chessinator
+target_link_libraries(${TARGET_NAME}
         Qt6::Core
         Qt6::Gui
         Qt6::Widgets
         )
 
+if(MSVC)
+        target_compile_options(${TARGET_NAME} PRIVATE /W4 /WX)
+else()
+        target_compile_options(${TARGET_NAME} PRIVATE -Wall -Wextra -Wpedantic -Werror)
+endif()
 if (WIN32)
         set(DEBUG_SUFFIX)
         if (MSVC AND CMAKE_BUILD_TYPE MATCHES "Debug")
