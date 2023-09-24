@@ -1,4 +1,4 @@
-#include "action_widget.h"
+#include "ActionsWidget.h"
 
 #include <QVBoxLayout>
 

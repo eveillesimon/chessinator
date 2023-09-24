@@ -1,11 +1,13 @@
-#include "chesspiece.h"
-#include "constants.h"
+#include "ChessPiece.h"
+#include "Constants.h"
 
-ChessPiece::ChessPiece(bool teamWhite, ChessPieceKind kind, QGraphicsItem *parent)
- : QGraphicsPixmapItem(parent), m_kind(kind),m_teamWhite(teamWhite)
+#include <QGraphicsDropShadowEffect>
+
+ChessPiece::ChessPiece(bool teamWhite, ChessPieceKind kind, ChessScene *scene, QGraphicsItem *parent)
+ : QGraphicsPixmapItem(parent), m_scene(scene), m_kind(kind), m_teamWhite(teamWhite)
 {
     using namespace ChessConstants;
-
+    setAcceptHoverEvents(true);
     QString fileName = QString();
     fileName.append(prefix()).append(name());
 
@@ -48,3 +50,15 @@ void ChessPiece::paint(QPainter *painter, const QStyleOptionGraphicsItem *option
     painter->translate(-size.width()/2, -size.height()/2);
     QGraphicsPixmapItem::paint(painter, option, widget);
 }
+
+void ChessPiece::hoverEnterEvent(QGraphicsSceneHoverEvent *event) {
+    qDebug() << "hoverEnterEvent";
+    QGraphicsItem::hoverEnterEvent(event);
+}
+
+
+void ChessPiece::hoverLeaveEvent(QGraphicsSceneHoverEvent *event) {
+    qDebug() << "hoverLeaveEvent";
+    QGraphicsItem::hoverLeaveEvent(event);
+}
+

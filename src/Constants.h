@@ -7,8 +7,9 @@
 namespace ChessConstants {
     inline constexpr int CHESSBOARD_SIZE{8};                // Usual chessboard is 8 by 8
     inline constexpr int CHESSSQUARE_SIZE{100};              // Value in px
-    inline constexpr float CHESSPIECE_HEIGHT_SCALE{0.9f};   // Value in percent
-    inline constexpr bool FIRST_SQUARE_IS_WHITE{1};         // whether or not top left square is white
+    inline constexpr float CHESSPIECE_HEIGHT_SCALE{0.75f};   // Between 0 and 1
+    inline constexpr float AVAILABLE_SPOT_SCALE{0.4f};       // Between 0 and 1
+    inline constexpr bool FIRST_SQUARE_IS_WHITE{1};         // Whether or not top left square is white
     inline constexpr QColor WHITE_SQUARE_COLOR{
         QColorConstants::Svg::lemonchiffon
     };

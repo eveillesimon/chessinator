@@ -1,8 +1,8 @@
 #ifndef WINDOW_H
 #define WINDOW_H
 
-#include "chessscene.h"
-#include "action_widget.h"
+#include "ChessScene.h"
+#include "ActionsWidget.h"
 
 #include <QMainWindow>
 #include <QGraphicsView>

@@ -12,6 +12,8 @@ class ChessScene : public QGraphicsScene
 public:
     explicit ChessScene(QObject *parent = nullptr);
 
+    void displayMoves(QList<QPair<int, int>> moves);
+
 private:
     void initBoard();
 };

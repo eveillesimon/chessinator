@@ -1,6 +1,7 @@
-#include "chessscene.h"
-#include "constants.h"
-#include "chesspiece.h"
+#include "ChessScene.h"
+#include "Constants.h"
+#include "ChessPiece.h"
+#include "AvailableSpot.h"
 
 #include <QPainterPath>
 #include <QGraphicsRectItem>
@@ -11,7 +12,6 @@
 ChessScene::ChessScene(QObject *parent)
     : QGraphicsScene{parent}
 {
-
     using namespace ChessConstants;
     initBoard();
 
@@ -23,7 +23,12 @@ ChessScene::ChessScene(QObject *parent)
     piece->setPos( CHESSSQUARE_SIZE*5/2, CHESSSQUARE_SIZE*7/2);
     piece2->setPos( CHESSSQUARE_SIZE*13/2, CHESSSQUARE_SIZE*9/2);
 
-
+    QList<QPair<int, int>> moves = {
+        {0, 1},
+        {0, 2},
+        {1, 2}
+    };
+    displayMoves(moves);
 }
 
 void ChessScene::initBoard() {
@@ -67,5 +72,13 @@ void ChessScene::initBoard() {
 
         firstIsWhite = !firstIsWhite;
         nextPosition += uY;
+    }
+}
+
+void ChessScene::displayMoves(QList<QPair<int, int>> moves) {
+using namespace ChessConstants;
+    for(auto &move : moves) {
+        AvailableSpot *container = new AvailableSpot(move);
+        addItem(container);
     }
 }

@@ -23,11 +23,14 @@ add_executable(
         ${TARGET_NAME}
         application.qrc
         src/main.cpp
-        src/window.cpp
-        src/chessscene.cpp
-        src/chesspiece.cpp
-        src/action_widget.cpp
-        )
+        src/Window.cpp
+        src/ChessScene.cpp
+        src/ChessPiece.cpp
+        src/ActionsWidget.cpp
+        src/AvailableSpot.cpp
+        src/AvailableSpot.h
+)
+
 target_link_libraries(${TARGET_NAME}
         Qt6::Core
         Qt6::Gui
