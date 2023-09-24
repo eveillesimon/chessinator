@@ -7,6 +7,8 @@
 
 
 #include <QBrush>
+#include <QPen>
+#include <QPainter>
 
 AvailableSpot::AvailableSpot(QPair<int, int> coords ,QGraphicsItem *parent) : QGraphicsItemGroup(parent)
 {
@@ -26,8 +28,10 @@ AvailableSpot::AvailableSpot(QPair<int, int> coords ,QGraphicsItem *parent) : QG
             CHESSSQUARE_SIZE * AVAILABLE_SPOT_SCALE,
             CHESSSQUARE_SIZE * AVAILABLE_SPOT_SCALE,
             m_container);
-
-    m_spot->setBrush(QBrush(QColorConstants::Svg::lightslategray));
+    QPen pen = QPen(QColorConstants::Svg::black);
+    pen.setWidth(4);
+    m_spot->setPen(pen);
+    m_spot->setBrush(QBrush(AVAILABLE_SPOT_COLOR));
 
     addToGroup(m_container);
     addToGroup(m_spot);
@@ -43,13 +47,15 @@ QPair<int, int> AvailableSpot::calculateSpotCoords(QPair<int, int> coords) {
 }
 
 void AvailableSpot::hoverEnterEvent(QGraphicsSceneHoverEvent *event) {
-    m_spot->setBrush(QBrush(QColorConstants::Svg::darkgreen));
+    using namespace ChessConstants;
+    m_spot->setBrush(QBrush(AVAILABLE_SPOT_HOVER_COLOR));
     QGraphicsItem::hoverEnterEvent(event);
 }
 
 
 void AvailableSpot::hoverLeaveEvent(QGraphicsSceneHoverEvent *event) {
-    m_spot->setBrush(QBrush(QColorConstants::Svg::lightslategray));
+    using namespace ChessConstants;
+    m_spot->setBrush(QBrush(AVAILABLE_SPOT_COLOR));
     QGraphicsItem::hoverLeaveEvent(event);
 }
 

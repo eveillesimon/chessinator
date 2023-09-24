@@ -20,8 +20,8 @@ ChessScene::ChessScene(QObject *parent)
 
     addItem(piece2);
     addItem(piece);
-    piece->setPos( CHESSSQUARE_SIZE*5/2, CHESSSQUARE_SIZE*7/2);
-    piece2->setPos( CHESSSQUARE_SIZE*13/2, CHESSSQUARE_SIZE*9/2);
+    piece->setPos( CHESSSQUARE_SIZE*2, CHESSSQUARE_SIZE*3);
+    piece2->setPos( CHESSSQUARE_SIZE*6, CHESSSQUARE_SIZE*4);
 
     QList<QPair<int, int>> moves = {
         {0, 1},

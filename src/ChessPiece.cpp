@@ -3,22 +3,37 @@
 
 #include <QGraphicsDropShadowEffect>
 
-ChessPiece::ChessPiece(bool teamWhite, ChessPieceKind kind, ChessScene *scene, QGraphicsItem *parent)
- : QGraphicsPixmapItem(parent), m_scene(scene), m_kind(kind), m_teamWhite(teamWhite)
+ChessPiece::ChessPiece(bool teamWhite, ChessPieceKind kind, QGraphicsItem *parent)
+ : QGraphicsItemGroup(parent), m_kind(kind), m_teamWhite(teamWhite)
 {
     using namespace ChessConstants;
     setAcceptHoverEvents(true);
+
+    m_container = new QGraphicsRectItem( QRectF(
+                0,
+                0,
+                CHESSSQUARE_SIZE,
+                CHESSSQUARE_SIZE
+            ),
+            this);
+    m_container->setVisible(true);
+
     QString fileName = QString();
     fileName.append(prefix()).append(name());
-
-    QPixmap pmap = QPixmap();
-    pmap.load(fileName, "PNG");
-
-    pmap = pmap.scaledToHeight(
+    m_clearImage = QPixmap();
+    m_clearImage.load(fileName, IMAGE_FORMAT.data());
+    m_clearImage = m_clearImage.scaledToHeight(
         static_cast<int>(CHESSPIECE_HEIGHT_SCALE * CHESSSQUARE_SIZE),
         Qt::SmoothTransformation
     );
-    setPixmap(pmap);
+    initDarkImage();
+
+    m_graphicsPixmap = new QGraphicsPixmapItem(m_clearImage, m_container);
+    placeGPixmap();
+
+
+    addToGroup(m_container);
+    addToGroup(m_graphicsPixmap);
 }
 
 
@@ -45,20 +60,35 @@ std::string_view ChessPiece::name() const{
     }
 }
 
-void ChessPiece::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {
-    QSize size = pixmap().size();
-    painter->translate(-size.width()/2, -size.height()/2);
-    QGraphicsPixmapItem::paint(painter, option, widget);
+void ChessPiece::placeGPixmap() const {
+    using namespace ChessConstants;
+
+    int x = CHESSSQUARE_SIZE/2 - m_graphicsPixmap->pixmap().width() / 2;
+    int y = CHESSSQUARE_SIZE/2 - m_graphicsPixmap->pixmap().height() / 2;
+    m_graphicsPixmap->setPos(x, y);
 }
 
 void ChessPiece::hoverEnterEvent(QGraphicsSceneHoverEvent *event) {
-    qDebug() << "hoverEnterEvent";
+    m_graphicsPixmap->setPixmap(m_darkImage);
     QGraphicsItem::hoverEnterEvent(event);
 }
 
 
 void ChessPiece::hoverLeaveEvent(QGraphicsSceneHoverEvent *event) {
-    qDebug() << "hoverLeaveEvent";
+    m_graphicsPixmap->setPixmap(m_clearImage);
     QGraphicsItem::hoverLeaveEvent(event);
 }
+
+void ChessPiece::initDarkImage() {
+    using namespace ChessConstants;
+    QImage image = m_clearImage.toImage();
+    for (int x{0}; x < image.width(); x++) {
+        for (int y{0}; y < image.height(); y++) {
+            QColor color = image.pixelColor(x, y);
+            image.setPixelColor(x, y, color.darker(CHESSPIECE_HOVER_EFFECT));
+        }
+    }
+    m_darkImage = QPixmap::fromImage(image);
+}
+
 
