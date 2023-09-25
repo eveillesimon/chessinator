@@ -1,8 +1,6 @@
 #ifndef CHESSPIECE_H
 #define CHESSPIECE_H
 
-#include "ChessScene.h"
-
 #include <cstdint>
 #include <string>
 #include <vector>
@@ -25,6 +23,7 @@ class ChessPiece : public QObject, public QGraphicsItemGroup
     Q_OBJECT
 public:
     explicit ChessPiece(bool teamWhite, ChessPieceKind kind, QGraphicsItem *parent = nullptr);
+    void setPositionOnBoard(QPair<int, int> coords);
 
 protected:
     void hoverEnterEvent(QGraphicsSceneHoverEvent *event) override;

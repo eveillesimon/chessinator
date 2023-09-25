@@ -91,4 +91,12 @@ void ChessPiece::initDarkImage() {
     m_darkImage = QPixmap::fromImage(image);
 }
 
+void ChessPiece::setPositionOnBoard(QPair<int, int> coords) {
+    using namespace ChessConstants;
+    setPos(
+        coords.first * CHESSSQUARE_SIZE,
+        coords.second * CHESSSQUARE_SIZE
+    );
+}
+
 

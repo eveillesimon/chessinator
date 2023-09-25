@@ -8,12 +8,12 @@
 
 #include <QBrush>
 #include <QPen>
-#include <QPainter>
 
-AvailableSpot::AvailableSpot(QPair<int, int> coords ,QGraphicsItem *parent) : QGraphicsItemGroup(parent)
+AvailableSpot::AvailableSpot(ChessPiece *piece, QPair<int, int> coords ,QGraphicsItem *parent) : QGraphicsItemGroup(parent)
 {
     using namespace ChessConstants;
     setAcceptHoverEvents(true);
+    setAcceptedMouseButtons(Qt::LeftButton);
     m_container = new QGraphicsRectItem( QRectF(
                 coords.first * CHESSSQUARE_SIZE,
                 coords.second * CHESSSQUARE_SIZE,
@@ -32,6 +32,8 @@ AvailableSpot::AvailableSpot(QPair<int, int> coords ,QGraphicsItem *parent) : QG
     pen.setWidth(4);
     m_spot->setPen(pen);
     m_spot->setBrush(QBrush(AVAILABLE_SPOT_COLOR));
+    m_piece = piece;
+    m_coords = coords;
 
     addToGroup(m_container);
     addToGroup(m_spot);
@@ -57,6 +59,11 @@ void AvailableSpot::hoverLeaveEvent(QGraphicsSceneHoverEvent *event) {
     using namespace ChessConstants;
     m_spot->setBrush(QBrush(AVAILABLE_SPOT_COLOR));
     QGraphicsItem::hoverLeaveEvent(event);
+}
+
+void AvailableSpot::mousePressEvent(QGraphicsSceneMouseEvent *event) {
+    m_piece->setPositionOnBoard(m_coords);
+    QGraphicsItem::mousePressEvent(event);
 }
 
 

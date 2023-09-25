@@ -1,10 +1,10 @@
 #ifndef CHESSSCENE_H
 #define CHESSSCENE_H
 
+#include "ChessPiece.h"
+#include "AvailableSpot.h"
+
 #include <QGraphicsScene>
-
-// Hash function def for tuple
-
 
 class ChessScene : public QGraphicsScene
 {
@@ -12,10 +12,14 @@ class ChessScene : public QGraphicsScene
 public:
     explicit ChessScene(QObject *parent = nullptr);
 
-    void displayMoves(QList<QPair<int, int>> moves);
+    void showAvailableSpots(ChessPiece *piece, QList<QPair<int, int>> moves);
+    void clearAvailableSpots();
 
 private:
+    QList<AvailableSpot> m_availableSpots;
+
     void initBoard();
+    void initPieces();
 };
 
 #endif // CHESSSCENE_H

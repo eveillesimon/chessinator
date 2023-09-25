@@ -29,7 +29,7 @@ add_executable(
         src/ActionsWidget.cpp
         src/AvailableSpot.cpp
         src/AvailableSpot.h
-)
+        src/BoardPosition.cpp src/BoardPosition.h)
 
 target_link_libraries(${TARGET_NAME}
         Qt6::Core

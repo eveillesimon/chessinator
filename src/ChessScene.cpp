@@ -14,21 +14,22 @@ ChessScene::ChessScene(QObject *parent)
 {
     using namespace ChessConstants;
     initBoard();
+    m_availableSpots = QList<AvailableSpot>();
 
     auto *piece = new ChessPiece(true, ChessPieceKind::PAWN);
     auto *piece2 = new ChessPiece(false, ChessPieceKind::QUEEN);
 
     addItem(piece2);
     addItem(piece);
-    piece->setPos( CHESSSQUARE_SIZE*2, CHESSSQUARE_SIZE*3);
-    piece2->setPos( CHESSSQUARE_SIZE*6, CHESSSQUARE_SIZE*4);
+    piece->setPositionOnBoard({2, 3});
+    piece2->setPositionOnBoard({6, 4});
 
     QList<QPair<int, int>> moves = {
         {0, 1},
         {0, 2},
         {1, 2}
     };
-    displayMoves(moves);
+    showAvailableSpots(piece, moves);
 }
 
 void ChessScene::initBoard() {
@@ -75,10 +76,22 @@ void ChessScene::initBoard() {
     }
 }
 
-void ChessScene::displayMoves(QList<QPair<int, int>> moves) {
+void ChessScene::showAvailableSpots(ChessPiece *piece, QList<QPair<int, int>> moves) {
 using namespace ChessConstants;
     for(auto &move : moves) {
-        AvailableSpot *container = new AvailableSpot(move);
+        auto *container = new AvailableSpot(piece, move);
         addItem(container);
     }
+}
+
+void ChessScene::clearAvailableSpots() {
+    for(int i{0}; i < m_availableSpots.size(); i++) {
+        removeItem((QGraphicsItemGroup *) &m_availableSpots.at(i));
+    }
+    m_availableSpots.clear();
+}
+
+void ChessScene::initPieces(
+        ) {
+    // TODO: represent board position (bitboard)
 }
